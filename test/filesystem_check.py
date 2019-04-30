@@ -39,7 +39,7 @@ def filesystem_check():
         result['stderr_line'] =  module.params[module_arg] + msg
         module.exit_json(**result)
       if status == "stdout":
-        result['stderr_line'] =  module.params[module_arg] + msg
+        result['stdout_line'] =  module.params[module_arg] + msg
         module.exit_json(**result)
       return
 
@@ -47,17 +47,17 @@ def filesystem_check():
       if stat.S_ISBLK(os.stat(module.params['device']).st_mode):
         dump_device = subprocess.Popen(["mount"], stdout=subprocess.PIPE ).communicate()[0]
         if dump_device.split().count(module.params['device']) > 0 :
-          result_output("device", "device is already mounted\n")
+          result_output("device", " device is already mounted\n")
           #result['stderr_line'] = "Device " + module.params['device'] + " is already mounted\n"
           #module.exit_json(**result)
           return
       else:
-        result_output("device", "device is not a valid block device\n")
+        result_output("device", " device is not a valid block device\n")
         # result['stderr_line'] = "Device " + module.params['device'] + " is not a valid block device\n"
         # module.exit_json(**result)
         return
     else:
-      result_output("device", "device does not exist\n")
+      result_output("device", " device does not exist\n")
       #result['stderr_line'] = "Device " + module.params['device'] + " does not exist\n"
       #module.exit_json(**result)
       return
@@ -69,17 +69,17 @@ def filesystem_check():
           # result['stdout_line'] = "Successfully " + module.params['device'] + " mounted on" + module.params['mount_point']
           # # need to write mount commands
         else:
-          result_output("mount_point", "mount point is already mounted\n")
+          result_output("mount_point", " mount point is already mounted\n")
           # result['stderr_line'] = "Directory " + module.params['mount_point'] + " is already mounted\n"
           # module.exit_json(**result)
           return
       else:
-        result_output("mount_point", "mount point is not directory\n")
+        result_output("mount_point", " mount point is not directory\n")
         # result['stderr_line'] =  module.params['mount_point'] + " is not directory\n"
         # module.exit_json(**result)
         return
     else:
-      result_output("mount_point", "mount point  does not exist\n")
+      result_output("mount_point", " mount point  does not exist\n")
       # result['stderr_line'] = "Directory " + module.params['mount_point'] + " does not exist\n"
       # module.exit_json(**result)
       return 
