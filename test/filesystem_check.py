@@ -46,20 +46,21 @@ def filesystem_check():
       # Pending with mount commands
       if filesystem is None and mount_args is None:
         #mount device mount_point
-        result_output("device", " mount " + device + mount_point + " mounted now", "stdout")
+        result_output("device", " mount " + device + " "  + mount_point + " "  + " mounted now", "stdout")
         return
       if filesystem is not None and mount_args is None :
         #mount -t filesystem device mount_point
-        result_output("device", " mount -t filesystem " + device + mount_point + " mounted now", "stdout")
+        result_output("device", " mount -t " + filesystem + " " + device + " "  + mount_point + " mounted now", "stdout")
         return
       if filesystem is None and mount_args is not None :
         #mount -o mount_args device mount_point
-        result_output("device", " mount -o mount_args " + device + mount_point + " mounted now", "stdout")
-      return
+        result_output("device", " mount -o " + mount_args + " "  + device + " "  + mount_point + " mounted now", "stdout")
+        return
       if filesystem is not None and mount_args is not None :
         #mount -t filesystem -o mount_args device mount_point
-        result_output("device", " mount -t filesystem -o mount_args " + device + mount_point + " mounted now", "stdout")
-      return
+        result_output("device", " mount -t " + filesystem + " -o " +mount_args + " "  + device + " "  + mount_point + " mounted now", "stdout")
+        return
+      return 
 
     if os.path.exists(module.params['device']):
       if stat.S_ISBLK(os.stat(module.params['device']).st_mode):
