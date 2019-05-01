@@ -46,19 +46,19 @@ def filesystem_check():
       # Pending with mount commands
       if len(filesystem) == 0 and len(mount_args) == 0:
         #mount device mount_point
-        result_output("device", "mount " + device + mount_point + " mounted now", "stdout")
+        result_output("device", " mount " + device + mount_point + " mounted now", "stdout")
         return
       if len(filesystem) > 0 and len(mount_args) == 0 :
         #mount -t filesystem device mount_point
-        result_output("device", "mount -t filesystem " + device + mount_point + " mounted now", "stdout")
+        result_output("device", " mount -t filesystem " + device + mount_point + " mounted now", "stdout")
         return
       if len(filesystem) == 0 and len(mount_args) > 0 :
         #mount -o mount_args device mount_point
-        result_output("device", "mount -o mount_args " + device + mount_point + " mounted now", "stdout")
+        result_output("device", " mount -o mount_args " + device + mount_point + " mounted now", "stdout")
       return
       if len(filesystem) > 0 and len(mount_args) > 0 :
         #mount -t filesystem -o mount_args device mount_point
-        result_output("device", "mount -t filesystem -o mount_args " + device + mount_point + " mounted now", "stdout")
+        result_output("device", " mount -t filesystem -o mount_args " + device + mount_point + " mounted now", "stdout")
       return
 
     if os.path.exists(module.params['device']):
