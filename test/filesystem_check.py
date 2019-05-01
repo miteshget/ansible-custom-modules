@@ -42,8 +42,23 @@ def filesystem_check():
         module.exit_json(**result)
       return
 
-    def mount_device():
+    def mount_device(device, mount_point, filesystem = "", mount_args = ""):
       # Pending with mount commands
+      if len(filesystem) == 0 and len(mount_args) == 0:
+        #mount device mount_point
+        result_output("device", "mount " + device + mount_point + " mounted now", "stdout")
+        return
+      if len(filesystem) > 0 and len(mount_args) == 0 :
+        #mount -t filesystem device mount_point
+        result_output("device", "mount -t filesystem " + device + mount_point + " mounted now", "stdout")
+        return
+      if len(filesystem) == 0 and len(mount_args) > 0 :
+        #mount -o mount_args device mount_point
+        result_output("device", "mount -o mount_args " + device + mount_point + " mounted now", "stdout")
+      return
+      if len(filesystem) > 0 and len(mount_args) > 0 :
+        #mount -t filesystem -o mount_args device mount_point
+        result_output("device", "mount -t filesystem -o mount_args " + device + mount_point + " mounted now", "stdout")
       return
 
     if os.path.exists(module.params['device']):
@@ -62,8 +77,8 @@ def filesystem_check():
     if os.path.exists(module.params['mount_point']):
       if os.path.isdir(module.params['mount_point']):
         if not os.path.ismount(module.params['mount_point']):
-          # mount_device()
-          result_output("mount_point", " Successfully mounted ", "stdout")
+          mount_device(module.params['device'], module.params['mount_point'])
+          #result_output("mount_point", " Successfully mounted ", "stdout")
         else:
           result_output("mount_point", " mount point is already mounted\n")
           return
