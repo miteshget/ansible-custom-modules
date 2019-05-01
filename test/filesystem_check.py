@@ -42,7 +42,7 @@ def filesystem_check():
         module.exit_json(**result)
       return
 
-    def mount_device(device, mount_point, filesystem = "", mount_args = ""):
+    def mount_device(device, mount_point, filesystem = module.params['filesystem'], mount_args = module.params['mount_args']):
       # Pending with mount commands
       if len(filesystem) == 0 and len(mount_args) == 0:
         #mount device mount_point
