@@ -33,12 +33,14 @@ def filesystem_check():
        stderr_line=''
        )
 
-    def result_output(module_arg, msg, status = "stderr"):
-      if status == "stderr":
+    def result_output(module_arg, msg, output_type = "stderr", result_status = False):
+      if output_type == "stderr":
         result['stderr_line'] =  module.params[module_arg] + msg
+        result['changed'] = result_status 
         module.exit_json(**result)
-      if status == "stdout":
+      if output_type == "stdout":
         result['stdout_line'] =  module.params[module_arg] + msg
+        result['changed'] = result_status 
         module.exit_json(**result)
       return
 
@@ -46,19 +48,19 @@ def filesystem_check():
       # Pending with mount commands
       if filesystem is None and mount_args is None:
         #mount device mount_point
-        result_output("device", " mount " + device + " "  + mount_point + " "  + " mounted now", "stdout")
+        result_output("device", " mount " + device + " "  + mount_point + " "  + " mounted now", "stdout", True)
         return
       if filesystem is not None and mount_args is None :
         #mount -t filesystem device mount_point
-        result_output("device", " mount -t " + filesystem + " " + device + " "  + mount_point + " mounted now", "stdout")
+        result_output("device", " mount -t " + filesystem + " " + device + " "  + mount_point + " mounted now", "stdout", True)
         return
       if filesystem is None and mount_args is not None :
         #mount -o mount_args device mount_point
-        result_output("device", " mount -o " + mount_args + " "  + device + " "  + mount_point + " mounted now", "stdout")
+        result_output("device", " mount -o " + mount_args + " "  + device + " "  + mount_point + " mounted now", "stdout", True)
         return
       if filesystem is not None and mount_args is not None :
         #mount -t filesystem -o mount_args device mount_point
-        result_output("device", " mount -t " + filesystem + " -o " +mount_args + " "  + device + " "  + mount_point + " mounted now", "stdout")
+        result_output("device", " mount -t " + filesystem + " -o " +mount_args + " "  + device + " "  + mount_point + " mounted now", "stdout", True)
         return
       return 
 
