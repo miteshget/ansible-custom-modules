@@ -44,19 +44,19 @@ def filesystem_check():
 
     def mount_device(device, mount_point, filesystem = module.params['filesystem'], mount_args = module.params['mount_args']):
       # Pending with mount commands
-      if len(filesystem) == 0 and len(mount_args) == 0:
+      if filesystem is None and mount_args is None:
         #mount device mount_point
         result_output("device", " mount " + device + mount_point + " mounted now", "stdout")
         return
-      if len(filesystem) > 0 and len(mount_args) == 0 :
+      if filesystem is not None and mount_args is None :
         #mount -t filesystem device mount_point
         result_output("device", " mount -t filesystem " + device + mount_point + " mounted now", "stdout")
         return
-      if len(filesystem) == 0 and len(mount_args) > 0 :
+      if filesystem is None and mount_args is not None :
         #mount -o mount_args device mount_point
         result_output("device", " mount -o mount_args " + device + mount_point + " mounted now", "stdout")
       return
-      if len(filesystem) > 0 and len(mount_args) > 0 :
+      if filesystem is not None and mount_args is not None :
         #mount -t filesystem -o mount_args device mount_point
         result_output("device", " mount -t filesystem -o mount_args " + device + mount_point + " mounted now", "stdout")
       return
