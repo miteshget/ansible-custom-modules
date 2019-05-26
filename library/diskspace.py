@@ -5,7 +5,6 @@ ANSIBLE_METADATA = {'metadata_version': '1.0',
                     'supported_by': 'community'}
 
 DOCUMENTATION = ''' 
-module: user
 module: diskspace
 short_description: Diskspace utilistation status
 version_added: "1.0"
