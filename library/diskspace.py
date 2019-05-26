@@ -5,6 +5,38 @@ ANSIBLE_METADATA = {
     'supported_by': 'community'
 }
 
+DOCUMENTATION = '''
+---
+module: diskspace
+short_description: Diskspace utilistation status
+version_added: "1.0"
+description:
+    - "This shows how much a directory utilising space and reside on which disk"
+options:
+    name:
+        path:
+            - Path of directory or file
+        required: true
+
+        storage:
+            - A boolean value to display storage name where directory/file resides (default: false)
+        required: true
+
+author:
+    - Mitesh The Mouse (mitsharm@redhat.com)
+'''
+EXAMPLES = '''
+# Shows /tmp disk utilisation 
+- name: Test with a message
+  diskspace:
+    path: /tmp
+# Shows /tmp disk utilisation and storage location
+- name: Test with a message
+  diskspace:
+    path: /tmp
+    storage: True
+'''
+
 import os
 import stat
 import subprocess
