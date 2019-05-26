@@ -18,10 +18,10 @@ options:
         required: true
     storage:
         description:
-            - A boolean value to display storage name where directory/file resides (default: false)
+            - A boolean value to display storage name where directory/file resides
         required: false
         type: bool
-        default: false
+        default: no
 
 author:
 - Mitesh The Mouse (mitsharm@redhat.com)
