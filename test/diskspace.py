@@ -38,14 +38,14 @@ def filesystem():
         #######################################################  
         #Calculating disk usages
         dump_du_output = subprocess.Popen(["du", "-chd  1", module.params['path']], stdout=subprocess.PIPE ).communicate()[0]
-        for lines in dump_du_output.split("\n"):
-          if len(lines) > 0:
-            if lines.split()[1] == "total" :
-              result['stdout'] = lines.split()
-        result['stdout_line'] = dump_du_output
+        # for lines in dump_du_output.split("\n"):
+        #   if len(lines) > 0:
+        #     if lines.split()[1] == "total" :
+        #       result['stdout'] = lines.split()
+        # result['stdout_line'] = dump_du_output
         #######################################################
         # finding directory storage path
-        # storage_path = subprocess.Popen(["df", "-P", module.params['path']], stdout=subprocess.PIPE ).communicate()[0]
+        storage_path = subprocess.Popen(["df", "-P", module.params['path']], stdout=subprocess.PIPE ).communicate()[0]
         # if module.params['storage']:
         #   for device_list in storage_path.split("\n"):
         #     if len(device_list.split()) > 0:
