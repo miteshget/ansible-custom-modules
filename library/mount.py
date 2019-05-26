@@ -13,22 +13,22 @@ description:
 options:
     device:
         description:
-            - Path of directory or file
+            - Path of storage
         type: str
         required: true
     mount_point:
         description:
-            - A boolean value to display storage name where directory/file resides
+            - Path of mount point / directory
         required: true
         type: str
     mount_args:
         description:
-            - Path of directory or file
+            - options to mount storage
         type: str
         required: false
     filesystem:
         description:
-            - A boolean value to display storage name where directory/file resides
+            - storage filesystem type
         required: false
         type: str
 
