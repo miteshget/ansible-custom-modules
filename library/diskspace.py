@@ -20,7 +20,7 @@ options:
         description:
             - A boolean value to display storage name where directory/file resides (default: false)
         required: false
-         type: bool
+        type: bool
 
 author:
 - Mitesh The Mouse (mitsharm@redhat.com)
