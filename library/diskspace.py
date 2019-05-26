@@ -25,7 +25,7 @@ options:
     storage:
         description:
           - A boolean value to display storage name where directory/file resides (default: false)
-        required: falsee
+        required: false
 
 
 author:
