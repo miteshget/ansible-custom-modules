@@ -6,17 +6,11 @@ ANSIBLE_METADATA = {
 }
 
 DOCUMENTATION = '''
----
 module: diskspace
-
 short_description: Diskspace utilistation status
-
 version_added: "1.0"
-
 description:
     - "This shows how much a directory utilising space and reside on which disk"
-
-
 options:
     path:
         description:
@@ -29,7 +23,7 @@ options:
 
 
 author:
-    - Mitesh The Mouse (mitsharm@redhat.com)
+- Mitesh The Mouse (mitsharm@redhat.com)
 '''
 EXAMPLES = '''
 # Shows /tmp disk utilisation 

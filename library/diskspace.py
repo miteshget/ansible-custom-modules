@@ -1,28 +1,25 @@
 #!/usr/bin/python
 
-ANSIBLE_METADATA = {'metadata_version': '1.1',
-                    'status': ['stableinterface'],
-                    'supported_by': 'core'}
+ANSIBLE_METADATA = {'metadata_version': '1.0',
+                    'status': ['preview'],
+                    'supported_by': 'community'}
 
 DOCUMENTATION = ''' 
 module: user
-version_added: "0.2"
-short_description: Manage user accounts
+module: diskspace
+short_description: Diskspace utilistation status
+version_added: "1.0"
 description:
-    - Manage user accounts and user attributes.
-    - For Windows targets, use the M(win_user) module instead.
+    - "This shows how much a directory utilising space and reside on which disk"
 options:
-    name:
+    path:
         description:
-            - Name of the user to create, remove or modify.
-        type: str
+          - Path of directory or file
         required: true
-        aliases: [ user ]
-    uid:
+    storage:
         description:
-            - Optionally sets the I(UID) of the user.
-        type: int
-
+          - A boolean value to display storage name where directory/file resides (default: false)
+        required: false
 
 author:
 - Mitesh The Mouse (mitsharm@redhat.com)
