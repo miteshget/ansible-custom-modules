@@ -13,12 +13,13 @@ version_added: "1.0"
 description:
     - "This shows how much a directory utilising space and reside on which disk"
 options:
-    name:
-        path:
+    path:
+        description::
             - Path of directory or file
         required: true
 
-        storage:
+    storage:
+        description:
             - A boolean value to display storage name where directory/file resides (default: false)
         required: true
 
