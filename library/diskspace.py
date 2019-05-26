@@ -8,20 +8,25 @@ ANSIBLE_METADATA = {
 DOCUMENTATION = '''
 ---
 module: diskspace
+
 short_description: Diskspace utilistation status
+
 version_added: "1.0"
+
 description:
     - "This shows how much a directory utilising space and reside on which disk"
+
+
 options:
     path:
-        description::
-            - Path of directory or file
+        description:
+          - Path of directory or file
         required: true
-
     storage:
         description:
-            - A boolean value to display storage name where directory/file resides (default: false)
-        required: true
+          - A boolean value to display storage name where directory/file resides (default: false)
+        required: falsee
+
 
 author:
     - Mitesh The Mouse (mitsharm@redhat.com)
