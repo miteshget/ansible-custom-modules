@@ -42,7 +42,6 @@ def filesystem():
           if len(lines) > 0:
             if lines.split()[1] == "total" :
               result['stdout'] = lines.split()
-            
         result['stdout_line'] = dump_du_output
         #######################################################
         # finding directory storage path
