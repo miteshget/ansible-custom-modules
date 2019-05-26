@@ -42,8 +42,7 @@ def filesystem():
           if len(lines) > 0:
             if lines.split()[1] == "total" :
               result['stdout'] = lines.split()
-            else:
-              result['stdout_line'] = result['stdout_line'] + lines
+        result['stdout_line'] = dump_du_output
         #######################################################
         # finding directory storage path
         storage_path = subprocess.Popen(["df", "-P", module.params['path']], stdout=subprocess.PIPE ).communicate()[0]
