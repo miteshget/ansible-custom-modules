@@ -1,10 +1,55 @@
 #!/usr/bin/python
 
-ANSIBLE_METADATA = {
-    'metadata_version': '1.0',
-    'status': ['preview'],
-    'supported_by': 'community'
-}
+ANSIBLE_METADATA = {'metadata_version': '1.0',
+                    'status': ['preview'],
+                    'supported_by': 'community'}
+
+DOCUMENTATION = ''' 
+module: mount
+short_description: Mounts storage
+version_added: "0.1"
+description:
+    - Mounts storage if not mounted
+options:
+    device:
+        description:
+            - Path of directory or file
+        type: str
+        required: true
+    mount_point:
+        description:
+            - A boolean value to display storage name where directory/file resides
+        required: true
+        type: str
+    mount_args:
+        description:
+            - Path of directory or file
+        type: str
+        required: false
+    filesystem:
+        description:
+            - A boolean value to display storage name where directory/file resides
+        required: false
+        type: str
+
+
+author:
+- Mitesh The Mouse (mitsharm@redhat.com)
+'''
+EXAMPLES = '''
+# To mount storage
+- name: Test with a message
+  mount:
+    mount_point: /mnt
+    device: /dev/sda1
+# To mount storage with args and filesystem
+- name: Test with a message
+  mount:
+    mount_point: /mnt
+    device: /dev/sda1
+    filesystem: xfs
+    mount_args: acl,rw
+'''
 
 import os
 import stat
@@ -14,7 +59,7 @@ from ansible.module_utils.basic import AnsibleModule
 
 
 
-def filesystem_check():
+def mount():
     module_args = dict( 
       device = dict(type='str', required=True),  
       mount_point = dict(type='str', required=True ),
@@ -96,7 +141,7 @@ def filesystem_check():
     module.exit_json(**result)
 
 def main():
-  filesystem_check()
+  mount()
 
 if __name__ == '__main__':
     main()
