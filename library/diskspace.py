@@ -55,6 +55,7 @@ def diskspace():
       )
 
     result = dict(
+       failed = False, 
        changed=False,
        stdout = '',
        stdout_line='',
@@ -74,6 +75,7 @@ def diskspace():
               result['stdout'] = lines
         
         result['stdout_line'] = dump_du_output
+        result['changed'] = True
         #######################################################
         # finding directory storage path
         storage_path = subprocess.Popen(["df", "-P", module.params['path']], stdout=subprocess.PIPE ).communicate()[0]
@@ -85,8 +87,10 @@ def diskspace():
        
       else:
         result['stderr_line'] = module.params['path'] + " " + "is not directory"
+        result['failed'] = True
     else:
       result['stderr_line'] = module.params['path'] + " " + "does not exist"
+      result['failed'] = True
 
     module.exit_json(**result)
 
