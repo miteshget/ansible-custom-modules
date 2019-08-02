@@ -1,0 +1,18 @@
+- hosts: localhost
+  tasks:
+    - name: custom module
+      test3:
+        input: "Welcome to my hard work"
+        print1: False
+      register: output
+
+    - debug: var=output
+
+    - name: Diskspace module
+      diskspace: 
+        path: /Users
+        storage: true
+      register: output
+
+    - debug: var=output
+

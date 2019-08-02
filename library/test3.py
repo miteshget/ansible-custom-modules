@@ -2,29 +2,28 @@
 
 from ansible.module_utils.basic import AnsibleModule
 
-
 def test3():
+
+    module_args = dict( 
+      input = dict( type='str', required=True),
+      print1 = dict( type='bool', required=True)
+    )
+
     module = AnsibleModule(
       argument_spec=module_args,
       supports_check_mode=True
       )
-
-    module_args = dict( 
-      input = dict( type='str', required=True)
-      print = dict( type='bool', required=True, default=False)
-    )
     result = dict(
-       stdout = '',
+       stdout_line = '',
        changed = False
        )
 
-    if module_args.print == true:
-      result.stdout = module_args.input
-      result.changed = True
+    if module.params['print1'] == True:
+      result['stdout_line'] = module.params['input']
+      result['changed'] = True
     else:
-      result.stdout = "Hello World"
-      result.changed = false
-
+      result['stdout_line'] = "Hello World"
+      result['changed'] = False
     module.exit_json(**result)
   
 
